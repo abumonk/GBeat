@@ -1,0 +1,647 @@
+{
+  "name": "NeuroBreak_Main_0",
+  "sound": "Beats/NeuroBreak_Main_0.wav",
+  "bpm": 132.0,
+  "quants": [
+    {
+      "type": "Kick",
+      "position": 0,
+      "value": 1.0
+    },
+    {
+      "type": "Kick",
+      "position": 16,
+      "value": 1.0
+    },
+    {
+      "type": "Kick",
+      "position": 20,
+      "value": 1.0
+    },
+    {
+      "type": "Snare",
+      "position": 8,
+      "value": 1.0
+    },
+    {
+      "type": "Snare",
+      "position": 24,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 4,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 8,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 12,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 16,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 20,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 24,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 28,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 0,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 2,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 4,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 6,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 8,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 10,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 12,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 14,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 16,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 18,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 20,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 22,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 24,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 26,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 28,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 30,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 0,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 1,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 2,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 3,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 4,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 5,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 6,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 7,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 8,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 9,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 10,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 11,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 12,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 13,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 14,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 15,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 16,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 17,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 18,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 19,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 20,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 21,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 22,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 23,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 24,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 25,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 26,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 27,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 28,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 29,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 30,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 31,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 0,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 8,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 16,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 24,
+      "value": 1.0
+    },
+    {
+      "type": "Kick",
+      "position": 32,
+      "value": 1.0
+    },
+    {
+      "type": "Kick",
+      "position": 48,
+      "value": 1.0
+    },
+    {
+      "type": "Kick",
+      "position": 52,
+      "value": 1.0
+    },
+    {
+      "type": "Snare",
+      "position": 40,
+      "value": 1.0
+    },
+    {
+      "type": "Snare",
+      "position": 56,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 36,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 40,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 44,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 48,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 52,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 56,
+      "value": 1.0
+    },
+    {
+      "type": "Hat",
+      "position": 60,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 32,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 34,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 36,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 38,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 40,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 42,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 44,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 46,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 48,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 50,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 52,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 54,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 56,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 58,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 60,
+      "value": 1.0
+    },
+    {
+      "type": "Animation",
+      "position": 62,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 32,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 33,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 34,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 35,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 36,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 37,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 38,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 39,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 40,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 41,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 42,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 43,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 44,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 45,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 46,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 47,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 48,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 49,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 50,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 51,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 52,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 53,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 54,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 55,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 56,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 57,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 58,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 59,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 60,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 61,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 62,
+      "value": 1.0
+    },
+    {
+      "type": "Tick",
+      "position": 63,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 32,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 40,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 48,
+      "value": 1.0
+    },
+    {
+      "type": "Hit",
+      "position": 56,
+      "value": 1.0
+    }
+  ]
+}
