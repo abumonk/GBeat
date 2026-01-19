@@ -53,5 +53,8 @@ Thumbs.db
 .env.local
 *.local
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Test output
 test_results/
