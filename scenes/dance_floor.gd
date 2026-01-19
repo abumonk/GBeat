@@ -41,6 +41,15 @@ func _exit_tree() -> void:
 		Sequencer.unsubscribe(_tick_handle)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		change_pattern()
+	elif event.is_action_pressed("ui_up"):
+		set_dancer_count(min(dancers.size() + 1, 30))
+	elif event.is_action_pressed("ui_down"):
+		set_dancer_count(max(dancers.size() - 1, 1))
+
+
 func _setup_environment() -> void:
 	# Create dark environment
 	var env := Environment.new()
