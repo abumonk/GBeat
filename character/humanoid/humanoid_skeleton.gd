@@ -158,3 +158,12 @@ func get_bone_index(part: HumanoidTypes.BodyPart) -> int:
 func set_proportions(new_proportions: HumanoidTypes.BodyProportions) -> void:
 	proportions = new_proportions
 	build_skeleton()
+
+
+## Reset all bones to their rest pose
+func reset_to_rest() -> void:
+	for i in range(get_bone_count()):
+		var rest := get_bone_rest(i)
+		set_bone_pose_position(i, rest.origin)
+		set_bone_pose_rotation(i, Quaternion(rest.basis))
+		set_bone_pose_scale(i, Vector3.ONE)
