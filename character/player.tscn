@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8wd5k7lyqjxk"]
+
+[ext_resource type="Script" path="res://character/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://character/player_controller.gd" id="2_controller"]
+[ext_resource type="Script" path="res://character/movement/beat_movement.gd" id="3_movement"]
+[ext_resource type="Script" path="res://combat/combat_component.gd" id="4_combat"]
+[ext_resource type="Script" path="res://combat/melee_hitbox.gd" id="5_hitbox"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.2, 0.6, 0.9, 1)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 1
+collision_mask = 3
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="FacingIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.5, -0.5)
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource("2_controller")
+dead_zone = 0.15
+magnitude_step = 0.5
+direction_snap_angles = 8
+
+[node name="BeatMovementComponent" type="Node" parent="."]
+script = ExtResource("3_movement")
+base_speed = 5.0
+acceleration = 20.0
+deceleration = 30.0
+rotation_speed = 10.0
+
+[node name="BeatCombatComponent" type="Node" parent="."]
+script = ExtResource("4_combat")
+combo_timeout_beats = 8
+combo_increment = 0.1
+
+[node name="BeatMeleeHitboxComponent" type="Node3D" parent="."]
+script = ExtResource("5_hitbox")
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

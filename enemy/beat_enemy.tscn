@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cft8nq3xyjwme"]
+
+[ext_resource type="Script" path="res://enemy/beat_enemy.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://enemy/enemy_combat.gd" id="2_combat"]
+[ext_resource type="Script" path="res://enemy/enemy_ai.gd" id="3_ai"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.8, 0.3, 0.3, 1)
+
+[node name="BeatEnemy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_enemy")
+max_health = 100.0
+detection_range = 10.0
+detection_angle = 120.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="FacingIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.4, -0.4)
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="BeatEnemyCombatComponent" type="Node" parent="."]
+script = ExtResource("2_combat")
+attack_cooldown = 2.0
+
+[node name="BeatEnemyAI" type="Node" parent="."]
+script = ExtResource("3_ai")
+pursue_range = 8.0
+attack_range = 2.0
+retreat_health_threshold = 0.2
+move_speed = 3.0

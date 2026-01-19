@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CombatStepDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://combat/combat_step_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+step_name = "heavy_attack_1"
+action_type = 2
+animation_name = "heavy_attack_1"
+animation_speed = 0.9
+startup_quants = 4
+active_quants = 6
+recovery_quants = 6
+base_damage = 25.0
+knockback_force = 8.0
+hitbox_offset = Vector3(0, 1, 1.0)
+hitbox_half_extent = Vector3(0.8, 0.6, 0.8)
+combo_link_type = 0
+can_cancel_into = []
+forward_movement = 1.0
+attack_range = 2.5
+optimal_range_min = 0.5
+optimal_range_max = 2.0
