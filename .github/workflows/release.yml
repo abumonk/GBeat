@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  GODOT_VERSION: "4.3"
+
+jobs:
+  build-all:
+    name: Build All Platforms
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Import Project
+        run: godot --headless --import
+
+      - name: Create Build Directories
+        run: |
+          mkdir -p build/windows
+          mkdir -p build/linux
+          mkdir -p build/web
+
+      - name: Export Windows
+        run: godot --headless --export-release "Windows Desktop" build/windows/GBeat.exe
+        continue-on-error: true
+
+      - name: Export Linux
+        run: godot --headless --export-release "Linux" build/linux/GBeat.x86_64
+        continue-on-error: true
+
+      - name: Export Web
+        run: godot --headless --export-release "Web" build/web/index.html
+        continue-on-error: true
+
+      - name: Create Windows ZIP
+        run: |
+          cd build/windows
+          zip -r ../GBeat-Windows-${{ github.ref_name }}.zip .
+        continue-on-error: true
+
+      - name: Create Linux ZIP
+        run: |
+          cd build/linux
+          zip -r ../GBeat-Linux-${{ github.ref_name }}.zip .
+        continue-on-error: true
+
+      - name: Create Web ZIP
+        run: |
+          cd build/web
+          zip -r ../GBeat-Web-${{ github.ref_name }}.zip .
+        continue-on-error: true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/GBeat-Windows-${{ github.ref_name }}.zip
+            build/GBeat-Linux-${{ github.ref_name }}.zip
+            build/GBeat-Web-${{ github.ref_name }}.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

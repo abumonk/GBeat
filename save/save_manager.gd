@@ -6,6 +6,10 @@ extends Node
 signal save_completed(slot_id: int, success: bool)
 signal load_completed(slot_id: int, success: bool)
 signal slot_deleted(slot_id: int)
+signal save_progress(percent: float)
+signal load_progress(percent: float)
+signal async_save_completed(slot_id: int, success: bool)
+signal async_load_completed(slot_id: int, success: bool)
 
 
 const SAVE_DIR := "user://saves/"
@@ -20,6 +24,15 @@ var current_slot: int = -1
 
 ## Global settings (independent of save slots)
 var global_settings: SaveTypes.SettingsData = SaveTypes.SettingsData.new()
+
+## Async save/load state
+var _save_thread: Thread = null
+var _load_thread: Thread = null
+var _async_save_slot: int = -1
+var _async_load_slot: int = -1
+var _async_save_result: bool = false
+var _async_load_result: bool = false
+var _async_operation_pending: bool = false
 
 
 func _ready() -> void:
@@ -276,3 +289,149 @@ func quick_save() -> bool:
 	if has_active_save():
 		return save_game(current_slot)
 	return false
+
+
+## === Async Save/Load ===
+
+func save_game_async(slot_id: int) -> void:
+	if _async_operation_pending:
+		push_warning("SaveManager: Async operation already in progress")
+		return
+
+	if not current_save:
+		current_save = SaveTypes.GameSaveData.new()
+
+	# Update slot info before async save
+	current_save.slot_info.slot_id = slot_id
+	current_save.slot_info.save_date = Time.get_datetime_string_from_system()
+	current_save.slot_info.is_empty = false
+	current_save.version = SAVE_VERSION
+
+	_async_save_slot = slot_id
+	_async_operation_pending = true
+	save_progress.emit(0.0)
+
+	_save_thread = Thread.new()
+	_save_thread.start(_async_save_thread.bind(slot_id))
+
+
+func _async_save_thread(slot_id: int) -> void:
+	var path := _get_save_path(slot_id)
+	var json := JSON.stringify(current_save.to_dict(), "\t")
+
+	call_deferred("_emit_save_progress", 0.5)
+
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if not file:
+		_async_save_result = false
+		call_deferred("_on_async_save_complete")
+		return
+
+	file.store_string(json)
+	file.close()
+
+	call_deferred("_emit_save_progress", 1.0)
+	_async_save_result = true
+	call_deferred("_on_async_save_complete")
+
+
+func _emit_save_progress(percent: float) -> void:
+	save_progress.emit(percent)
+
+
+func _on_async_save_complete() -> void:
+	if _save_thread:
+		_save_thread.wait_to_finish()
+		_save_thread = null
+
+	_async_operation_pending = false
+
+	if _async_save_result:
+		current_slot = _async_save_slot
+
+	async_save_completed.emit(_async_save_slot, _async_save_result)
+	save_completed.emit(_async_save_slot, _async_save_result)
+
+
+func load_game_async(slot_id: int) -> void:
+	if _async_operation_pending:
+		push_warning("SaveManager: Async operation already in progress")
+		return
+
+	var path := _get_save_path(slot_id)
+	if not FileAccess.file_exists(path):
+		push_error("SaveManager: Save file not found: %s" % path)
+		async_load_completed.emit(slot_id, false)
+		return
+
+	_async_load_slot = slot_id
+	_async_operation_pending = true
+	load_progress.emit(0.0)
+
+	_load_thread = Thread.new()
+	_load_thread.start(_async_load_thread.bind(slot_id))
+
+
+func _async_load_thread(slot_id: int) -> void:
+	var path := _get_save_path(slot_id)
+
+	call_deferred("_emit_load_progress", 0.25)
+
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		_async_load_result = false
+		call_deferred("_on_async_load_complete")
+		return
+
+	var content := file.get_as_text()
+	file.close()
+
+	call_deferred("_emit_load_progress", 0.5)
+
+	var json := JSON.new()
+	var error := json.parse(content)
+
+	if error != OK:
+		_async_load_result = false
+		call_deferred("_on_async_load_complete")
+		return
+
+	call_deferred("_emit_load_progress", 0.75)
+
+	# Must update current_save on main thread
+	call_deferred("_set_loaded_save", json.data, slot_id)
+	_async_load_result = true
+
+
+func _emit_load_progress(percent: float) -> void:
+	load_progress.emit(percent)
+
+
+func _set_loaded_save(data: Dictionary, slot_id: int) -> void:
+	current_save = SaveTypes.GameSaveData.from_dict(data)
+	current_slot = slot_id
+
+	if current_save.version < SAVE_VERSION:
+		_migrate_save(current_save.version, SAVE_VERSION)
+
+	load_progress.emit(1.0)
+	_on_async_load_complete()
+
+
+func _on_async_load_complete() -> void:
+	if _load_thread:
+		_load_thread.wait_to_finish()
+		_load_thread = null
+
+	_async_operation_pending = false
+	async_load_completed.emit(_async_load_slot, _async_load_result)
+	load_completed.emit(_async_load_slot, _async_load_result)
+
+
+func is_async_operation_pending() -> bool:
+	return _async_operation_pending
+
+
+func quick_save_async() -> void:
+	if has_active_save():
+		save_game_async(current_slot)

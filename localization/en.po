@@ -1,0 +1,236 @@
+# GBeat English Localization (Source)
+# Copyright (c) 2024
+# This file is distributed under the same license as the GBeat package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GBeat 1.0\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Main Menu
+msgid "MENU_START"
+msgstr "Start Game"
+
+msgid "MENU_CONTINUE"
+msgstr "Continue"
+
+msgid "MENU_OPTIONS"
+msgstr "Options"
+
+msgid "MENU_QUIT"
+msgstr "Quit"
+
+msgid "MENU_NEW_GAME"
+msgstr "New Game"
+
+msgid "MENU_LOAD_GAME"
+msgstr "Load Game"
+
+# Pause Menu
+msgid "PAUSE_TITLE"
+msgstr "Paused"
+
+msgid "PAUSE_RESUME"
+msgstr "Resume"
+
+msgid "PAUSE_RESTART"
+msgstr "Restart"
+
+msgid "PAUSE_OPTIONS"
+msgstr "Options"
+
+msgid "PAUSE_QUIT"
+msgstr "Quit to Menu"
+
+# Options
+msgid "OPTIONS_TITLE"
+msgstr "Options"
+
+msgid "OPTIONS_AUDIO"
+msgstr "Audio"
+
+msgid "OPTIONS_VIDEO"
+msgstr "Video"
+
+msgid "OPTIONS_GAMEPLAY"
+msgstr "Gameplay"
+
+msgid "OPTIONS_CONTROLS"
+msgstr "Controls"
+
+msgid "OPTIONS_ACCESSIBILITY"
+msgstr "Accessibility"
+
+# Audio Options
+msgid "AUDIO_MASTER"
+msgstr "Master Volume"
+
+msgid "AUDIO_MUSIC"
+msgstr "Music Volume"
+
+msgid "AUDIO_SFX"
+msgstr "SFX Volume"
+
+# Gameplay
+msgid "GAMEPLAY_DIFFICULTY"
+msgstr "Difficulty"
+
+msgid "DIFFICULTY_EASY"
+msgstr "Easy"
+
+msgid "DIFFICULTY_NORMAL"
+msgstr "Normal"
+
+msgid "DIFFICULTY_HARD"
+msgstr "Hard"
+
+msgid "DIFFICULTY_EXPERT"
+msgstr "Expert"
+
+# Combat
+msgid "COMBAT_PERFECT"
+msgstr "PERFECT!"
+
+msgid "COMBAT_GREAT"
+msgstr "GREAT!"
+
+msgid "COMBAT_GOOD"
+msgstr "GOOD"
+
+msgid "COMBAT_MISS"
+msgstr "MISS"
+
+msgid "COMBAT_EARLY"
+msgstr "EARLY"
+
+msgid "COMBAT_LATE"
+msgstr "LATE"
+
+# Combo
+msgid "COMBO_TEXT"
+msgstr "COMBO"
+
+msgid "COMBO_BROKEN"
+msgstr "Combo Broken!"
+
+# Style Ranks
+msgid "STYLE_D"
+msgstr "D"
+
+msgid "STYLE_C"
+msgstr "C"
+
+msgid "STYLE_B"
+msgstr "B"
+
+msgid "STYLE_A"
+msgstr "A"
+
+msgid "STYLE_S"
+msgstr "S"
+
+msgid "STYLE_SS"
+msgstr "SS"
+
+msgid "STYLE_SSS"
+msgstr "SSS"
+
+# Results
+msgid "RESULTS_TITLE"
+msgstr "Stage Clear!"
+
+msgid "RESULTS_SCORE"
+msgstr "Score"
+
+msgid "RESULTS_MAX_COMBO"
+msgstr "Max Combo"
+
+msgid "RESULTS_RANK"
+msgstr "Rank"
+
+msgid "RESULTS_TIME"
+msgstr "Time"
+
+msgid "RESULTS_CONTINUE"
+msgstr "Continue"
+
+msgid "RESULTS_RETRY"
+msgstr "Retry"
+
+# Game Over
+msgid "GAMEOVER_TITLE"
+msgstr "Game Over"
+
+msgid "GAMEOVER_RETRY"
+msgstr "Retry"
+
+msgid "GAMEOVER_QUIT"
+msgstr "Quit"
+
+# Save/Load
+msgid "SAVE_SLOT"
+msgstr "Slot"
+
+msgid "SAVE_EMPTY"
+msgstr "Empty"
+
+msgid "SAVE_CONFIRM"
+msgstr "Save to this slot?"
+
+msgid "LOAD_CONFIRM"
+msgstr "Load this save?"
+
+msgid "DELETE_CONFIRM"
+msgstr "Delete this save?"
+
+# Tutorial
+msgid "TUTORIAL_MOVE"
+msgstr "Move with WASD or Left Stick"
+
+msgid "TUTORIAL_ATTACK"
+msgstr "Attack on the beat!"
+
+msgid "TUTORIAL_DODGE"
+msgstr "Press Space to dodge"
+
+msgid "TUTORIAL_COMBO"
+msgstr "Chain attacks for combos"
+
+# Accessibility
+msgid "ACCESS_COLORBLIND"
+msgstr "Colorblind Mode"
+
+msgid "ACCESS_SCREENSHAKE"
+msgstr "Screen Shake"
+
+msgid "ACCESS_FLASH"
+msgstr "Flash Effects"
+
+msgid "ACCESS_BEAT_ASSIST"
+msgstr "Beat Assist"
+
+# Misc
+msgid "LOADING"
+msgstr "Loading..."
+
+msgid "CONFIRM"
+msgstr "Confirm"
+
+msgid "CANCEL"
+msgstr "Cancel"
+
+msgid "BACK"
+msgstr "Back"
+
+msgid "YES"
+msgstr "Yes"
+
+msgid "NO"
+msgstr "No"

@@ -1,0 +1,134 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+env:
+  GODOT_VERSION: "4.3"
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+
+      - name: Verify Godot
+        run: godot --version
+
+      - name: Import Project
+        run: godot --headless --import
+
+      - name: Run Tests
+        run: godot --headless --script res://tests/run_tests.gd --quit-after 60
+        timeout-minutes: 5
+
+  build-windows:
+    name: Build Windows
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Import Project
+        run: godot --headless --import
+
+      - name: Create Build Directory
+        run: mkdir -p build/windows
+
+      - name: Export Windows
+        run: godot --headless --export-release "Windows Desktop" build/windows/GBeat.exe
+        continue-on-error: true
+
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gbeat-windows
+          path: build/windows/
+          if-no-files-found: warn
+
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Import Project
+        run: godot --headless --import
+
+      - name: Create Build Directory
+        run: mkdir -p build/linux
+
+      - name: Export Linux
+        run: godot --headless --export-release "Linux" build/linux/GBeat.x86_64
+        continue-on-error: true
+
+      - name: Upload Linux Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gbeat-linux
+          path: build/linux/
+          if-no-files-found: warn
+
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Import Project
+        run: godot --headless --import
+
+      - name: Create Build Directory
+        run: mkdir -p build/web
+
+      - name: Export Web
+        run: godot --headless --export-release "Web" build/web/index.html
+        continue-on-error: true
+
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gbeat-web
+          path: build/web/
+          if-no-files-found: warn

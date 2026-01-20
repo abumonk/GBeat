@@ -1,0 +1,115 @@
+# GBeat Japanese Localization
+# Copyright (c) 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GBeat 1.0\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+# Main Menu
+msgid "MENU_START"
+msgstr "ゲームスタート"
+
+msgid "MENU_CONTINUE"
+msgstr "続ける"
+
+msgid "MENU_OPTIONS"
+msgstr "オプション"
+
+msgid "MENU_QUIT"
+msgstr "終了"
+
+msgid "MENU_NEW_GAME"
+msgstr "ニューゲーム"
+
+msgid "MENU_LOAD_GAME"
+msgstr "ロード"
+
+# Pause Menu
+msgid "PAUSE_TITLE"
+msgstr "ポーズ"
+
+msgid "PAUSE_RESUME"
+msgstr "再開"
+
+msgid "PAUSE_RESTART"
+msgstr "リスタート"
+
+msgid "PAUSE_OPTIONS"
+msgstr "オプション"
+
+msgid "PAUSE_QUIT"
+msgstr "メニューへ"
+
+# Combat
+msgid "COMBAT_PERFECT"
+msgstr "パーフェクト！"
+
+msgid "COMBAT_GREAT"
+msgstr "グレート！"
+
+msgid "COMBAT_GOOD"
+msgstr "グッド"
+
+msgid "COMBAT_MISS"
+msgstr "ミス"
+
+msgid "COMBAT_EARLY"
+msgstr "早い"
+
+msgid "COMBAT_LATE"
+msgstr "遅い"
+
+# Combo
+msgid "COMBO_TEXT"
+msgstr "コンボ"
+
+msgid "COMBO_BROKEN"
+msgstr "コンボ切れ！"
+
+# Results
+msgid "RESULTS_TITLE"
+msgstr "ステージクリア！"
+
+msgid "RESULTS_SCORE"
+msgstr "スコア"
+
+msgid "RESULTS_MAX_COMBO"
+msgstr "最大コンボ"
+
+msgid "RESULTS_RANK"
+msgstr "ランク"
+
+msgid "RESULTS_TIME"
+msgstr "タイム"
+
+# Game Over
+msgid "GAMEOVER_TITLE"
+msgstr "ゲームオーバー"
+
+msgid "GAMEOVER_RETRY"
+msgstr "リトライ"
+
+msgid "GAMEOVER_QUIT"
+msgstr "終了"
+
+# Misc
+msgid "LOADING"
+msgstr "ロード中..."
+
+msgid "CONFIRM"
+msgstr "決定"
+
+msgid "CANCEL"
+msgstr "キャンセル"
+
+msgid "BACK"
+msgstr "戻る"
+
+msgid "YES"
+msgstr "はい"
+
+msgid "NO"
+msgstr "いいえ"
