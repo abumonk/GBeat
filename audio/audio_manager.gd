@@ -1,5 +1,5 @@
 ## AudioManager - Manages music playback with layered tracks
-class_name AudioManager
+## Note: No class_name because this is an autoload singleton
 extends Node
 
 
@@ -7,6 +7,7 @@ signal layer_activated(layer_type: AudioTypes.LayerType)
 signal layer_deactivated(layer_type: AudioTypes.LayerType)
 signal track_changed(track: MusicTrack)
 signal beat_audio_pulse()
+signal music_state_changed(old_state: AudioTypes.MusicState, new_state: AudioTypes.MusicState)
 
 
 ## Configuration
@@ -17,10 +18,63 @@ signal beat_audio_pulse()
 
 ## State
 var current_track: MusicTrack = null
+var current_music_state: AudioTypes.MusicState = AudioTypes.MusicState.EXPLORATION
 var _layer_states: Dictionary = {}  ## LayerType -> AudioLayerState
 var _layer_players: Array[AudioStreamPlayer] = []
 var _sfx_pool: Array[AudioStreamPlayer] = []
 var _sfx_pool_size: int = 16
+
+## Music state configurations (MusicState -> Dictionary of LayerType -> volume_db)
+var _music_state_configs: Dictionary = {
+	AudioTypes.MusicState.EXPLORATION: {
+		AudioTypes.LayerType.BASE: 0.0,
+		AudioTypes.LayerType.AMBIENT: 0.0,
+		AudioTypes.LayerType.MELODY: -6.0,
+		AudioTypes.LayerType.PERCUSSION: -12.0,
+		AudioTypes.LayerType.BASS: -6.0,
+		AudioTypes.LayerType.COMBAT: -80.0,
+	},
+	AudioTypes.MusicState.COMBAT: {
+		AudioTypes.LayerType.BASE: 0.0,
+		AudioTypes.LayerType.AMBIENT: -12.0,
+		AudioTypes.LayerType.MELODY: 0.0,
+		AudioTypes.LayerType.PERCUSSION: 0.0,
+		AudioTypes.LayerType.BASS: 0.0,
+		AudioTypes.LayerType.COMBAT: 0.0,
+	},
+	AudioTypes.MusicState.COMBAT_INTENSE: {
+		AudioTypes.LayerType.BASE: 0.0,
+		AudioTypes.LayerType.AMBIENT: -24.0,
+		AudioTypes.LayerType.MELODY: 3.0,
+		AudioTypes.LayerType.PERCUSSION: 3.0,
+		AudioTypes.LayerType.BASS: 3.0,
+		AudioTypes.LayerType.COMBAT: 3.0,
+	},
+	AudioTypes.MusicState.BOSS: {
+		AudioTypes.LayerType.BASE: 0.0,
+		AudioTypes.LayerType.AMBIENT: -80.0,
+		AudioTypes.LayerType.MELODY: 0.0,
+		AudioTypes.LayerType.PERCUSSION: 3.0,
+		AudioTypes.LayerType.BASS: 3.0,
+		AudioTypes.LayerType.COMBAT: 6.0,
+	},
+	AudioTypes.MusicState.VICTORY: {
+		AudioTypes.LayerType.BASE: -6.0,
+		AudioTypes.LayerType.AMBIENT: 0.0,
+		AudioTypes.LayerType.MELODY: 3.0,
+		AudioTypes.LayerType.PERCUSSION: -12.0,
+		AudioTypes.LayerType.BASS: -6.0,
+		AudioTypes.LayerType.COMBAT: -80.0,
+	},
+	AudioTypes.MusicState.DEFEAT: {
+		AudioTypes.LayerType.BASE: -12.0,
+		AudioTypes.LayerType.AMBIENT: 0.0,
+		AudioTypes.LayerType.MELODY: -12.0,
+		AudioTypes.LayerType.PERCUSSION: -24.0,
+		AudioTypes.LayerType.BASS: -12.0,
+		AudioTypes.LayerType.COMBAT: -80.0,
+	},
+}
 
 ## Sequencer sync
 var _sequencer_deck: Sequencer.DeckType = Sequencer.DeckType.GAME
@@ -326,3 +380,78 @@ func get_bpm() -> float:
 	if current_track:
 		return current_track.bpm
 	return 120.0
+
+
+## === Music State Management ===
+
+func set_music_state(new_state: AudioTypes.MusicState, transition_time: float = 1.0) -> void:
+	if new_state == current_music_state:
+		return
+
+	var old_state := current_music_state
+	current_music_state = new_state
+
+	# Get state configuration
+	if not _music_state_configs.has(new_state):
+		return
+
+	var state_config: Dictionary = _music_state_configs[new_state]
+
+	# Apply volume changes for each layer
+	for layer_type in state_config.keys():
+		var target_volume: float = state_config[layer_type]
+		_transition_layer_to_volume(layer_type, target_volume, transition_time)
+
+	music_state_changed.emit(old_state, new_state)
+
+
+func _transition_layer_to_volume(layer_type: AudioTypes.LayerType, target_db: float, duration: float) -> void:
+	if not _layer_states.has(layer_type):
+		return
+
+	var state: AudioTypes.AudioLayerState = _layer_states[layer_type]
+	var layer := _get_layer_config(layer_type)
+
+	# Activate layer if needed (bringing volume up from silence)
+	if target_db > -60 and not state.is_active:
+		state.is_active = true
+		if not state.stream_player.playing:
+			state.stream_player.play()
+
+	# Deactivate layer if going silent
+	if target_db <= -60:
+		state.is_active = false
+
+	var fade_type := AudioTypes.CrossfadeType.EQUAL_POWER
+	if layer:
+		fade_type = layer.crossfade_type
+
+	_fade_layer(state, target_db, duration, fade_type)
+
+
+func get_music_state() -> AudioTypes.MusicState:
+	return current_music_state
+
+
+func enter_combat() -> void:
+	set_music_state(AudioTypes.MusicState.COMBAT)
+
+
+func enter_combat_intense() -> void:
+	set_music_state(AudioTypes.MusicState.COMBAT_INTENSE)
+
+
+func enter_boss_fight() -> void:
+	set_music_state(AudioTypes.MusicState.BOSS)
+
+
+func enter_exploration() -> void:
+	set_music_state(AudioTypes.MusicState.EXPLORATION)
+
+
+func trigger_victory() -> void:
+	set_music_state(AudioTypes.MusicState.VICTORY)
+
+
+func trigger_defeat() -> void:
+	set_music_state(AudioTypes.MusicState.DEFEAT)

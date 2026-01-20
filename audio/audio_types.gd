@@ -24,6 +24,29 @@ enum SFXCategory {
 }
 
 
+## Music state for dynamic mixing
+enum MusicState {
+	EXPLORATION,
+	COMBAT,
+	COMBAT_INTENSE,
+	BOSS,
+	VICTORY,
+	DEFEAT
+}
+
+
+## Frequency bands for spectrum analysis
+enum FrequencyBand {
+	SUB_BASS,    ## 20-60 Hz
+	BASS,        ## 60-250 Hz
+	LOW_MID,     ## 250-500 Hz
+	MID,         ## 500-2000 Hz
+	HIGH_MID,    ## 2000-4000 Hz
+	PRESENCE,    ## 4000-6000 Hz
+	BRILLIANCE   ## 6000-20000 Hz
+}
+
+
 enum CrossfadeType {
 	LINEAR,
 	EQUAL_POWER,

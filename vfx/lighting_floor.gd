@@ -39,10 +39,12 @@ var _tiles: Array[MeshInstance3D] = []
 var _tile_materials: Array[StandardMaterial3D] = []
 var _tick_handle: int = -1
 var _center: Vector2
+var _floor_collision: StaticBody3D
 
 
 func _ready() -> void:
 	_create_floor()
+	_create_collision()
 	_tick_handle = Sequencer.subscribe_to_tick(sequencer_deck, _on_tick)
 
 
@@ -78,6 +80,28 @@ func _create_floor() -> void:
 			add_child(tile)
 			_tiles.append(tile)
 			_tile_materials.append(mat)
+
+
+func _create_collision() -> void:
+	## Create a single collision plane for the entire floor
+	_floor_collision = StaticBody3D.new()
+	_floor_collision.collision_layer = 1  # Ground layer
+	_floor_collision.collision_mask = 0   # Doesn't need to detect anything
+
+	var collision_shape := CollisionShape3D.new()
+	var box_shape := BoxShape3D.new()
+
+	# Size to cover entire floor grid
+	var floor_width := grid_size.x * tile_size
+	var floor_depth := grid_size.y * tile_size
+	box_shape.size = Vector3(floor_width, 0.1, floor_depth)
+
+	collision_shape.shape = box_shape
+	# Position collision slightly below tile surfaces
+	collision_shape.position = Vector3(0, -0.05, 0)
+
+	_floor_collision.add_child(collision_shape)
+	add_child(_floor_collision)
 
 
 func _on_tick(event: SequencerEvent) -> void:

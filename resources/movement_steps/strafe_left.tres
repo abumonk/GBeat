@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MovementStepDefinition" load_steps=2 format=3 uid="uid://bk3l5mstr_l"]
+
+[ext_resource type="Script" path="res://character/movement/movement_step_definition.gd" id="1_step"]
+
+[resource]
+script = ExtResource("1_step")
+package = "strafe"
+step_name = "strafe_left"
+link = "strafe"
+animation_name = "strafe_left"
+step_start_frame = 0
+step_end_frame = 12
+step_start_foot_contact = 2
+step_end_foot_contact = 1
+movement_delta = Vector3(-1.5, 0, 0)
+rotation_delta = Vector3(0, 0, 0)
+max_facing_delta_degrees = 15.0
+min_desired_speed = 0.1
+max_desired_speed = 5.0
+base_duration_seconds = 0.4
+base_duration_frames = 24

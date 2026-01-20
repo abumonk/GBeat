@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://hud_scene_001"]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://ui/combo_counter.gd" id="2_combo"]
+[ext_resource type="Script" path="res://ui/ability_bar.gd" id="3_ability"]
+[ext_resource type="Script" path="res://ui/timing_indicator.gd" id="4_timing"]
+[ext_resource type="Script" path="res://ui/beat_indicator.gd" id="5_beat"]
+[ext_resource type="Script" path="res://ui/resource_bar.gd" id="6_resource"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+script = ExtResource("6_resource")
+
+[node name="BeatIndicator" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+script = ExtResource("5_beat")
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ComboCounter" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+script = ExtResource("2_combo")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="MiddleSpacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="AbilityBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar"]
+layout_mode = 2
+script = ExtResource("3_ability")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimingIndicator" type="Control" parent="CenterContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+script = ExtResource("4_timing")

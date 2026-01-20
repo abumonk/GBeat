@@ -19,15 +19,15 @@ func test_pattern_bpm_calculations() -> bool:
 	var pattern := Pattern.new()
 	pattern.bpm = 120.0
 
-	var beat_duration := pattern.get_beat_duration()
+	var beat_duration: float = pattern.get_beat_duration()
 	if not assert_approximately(beat_duration, 0.5, 0.001, "Beat duration at 120 BPM should be 0.5s"):
 		return false
 
-	var bar_duration := pattern.get_bar_duration()
+	var bar_duration: float = pattern.get_bar_duration()
 	if not assert_approximately(bar_duration, 2.0, 0.001, "Bar duration at 120 BPM should be 2.0s"):
 		return false
 
-	var quant_duration := pattern.get_quant_duration()
+	var quant_duration: float = pattern.get_quant_duration()
 	if not assert_approximately(quant_duration, 0.0625, 0.001, "Quant duration at 120 BPM should be ~0.0625s"):
 		return false
 
@@ -71,8 +71,8 @@ func test_pattern_get_quants_by_type() -> bool:
 		snare.position = 4 + i * 16
 		pattern.quants.append(snare)
 
-	var kicks := pattern.get_quants_by_type(Quant.Type.KICK)
-	var snares := pattern.get_quants_by_type(Quant.Type.SNARE)
+	var kicks: Array = pattern.get_quants_by_type(Quant.Type.KICK)
+	var snares: Array = pattern.get_quants_by_type(Quant.Type.SNARE)
 
 	if not assert_equal(kicks.size(), 4, "Should have 4 kicks"):
 		return false
@@ -122,7 +122,7 @@ func test_pattern_json_serialization() -> bool:
 	kick.value = 1.0
 	pattern.quants = [kick]
 
-	var json := pattern.to_json()
+	var json: String = pattern.to_json()
 	if not assert_string_contains(json, "test"):
 		return false
 	if not assert_string_contains(json, "140"):

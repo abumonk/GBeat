@@ -38,7 +38,8 @@ func _discover_tests() -> void:
 	var file_name := dir.get_next()
 
 	while file_name != "":
-		if file_name.begins_with("test_") and file_name.ends_with(".gd"):
+		# Skip base class and runner itself
+		if file_name.begins_with("test_") and file_name.ends_with(".gd") and file_name != "test_base.gd" and file_name != "test_runner.gd":
 			var script := load(test_dir + file_name) as GDScript
 			if script:
 				_test_classes.append(script)
@@ -62,8 +63,8 @@ func _run_test_class(test_class: GDScript) -> void:
 	print("\n--- %s ---" % class_name_str)
 
 	# Find all test methods
-	var methods := instance.get_method_list()
-	for method in methods:
+	var methods: Array = instance.get_method_list()
+	for method: Dictionary in methods:
 		var method_name: String = method["name"]
 		if method_name.begins_with("test_"):
 			_run_test_method(instance, method_name, class_name_str)
@@ -76,12 +77,12 @@ func _run_test_class(test_class: GDScript) -> void:
 		instance.queue_free()
 
 
-func _run_test_method(instance: Object, method_name: String, class_name: String) -> void:
+func _run_test_method(instance: Object, method_name: String, test_class_name: String) -> void:
 	# Setup
 	if instance.has_method("_setup"):
 		instance._setup()
 
-	var result := {"class": class_name, "method": method_name, "passed": true, "error": ""}
+	var result := {"class": test_class_name, "method": method_name, "passed": true, "error": ""}
 
 	# Run test
 	var error_msg := ""

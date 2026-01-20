@@ -38,7 +38,7 @@ class PulseConfig:
 	var trans_type: Tween.TransitionType = Tween.TRANS_EXPO
 
 
-class ColorPalette:
+class VFXColorPalette:
 	var primary: Color = Color(1.0, 0.2, 0.4)       ## Hot pink/magenta
 	var secondary: Color = Color(0.2, 0.8, 1.0)     ## Cyan
 	var accent: Color = Color(1.0, 0.8, 0.2)        ## Yellow/gold
@@ -46,8 +46,8 @@ class ColorPalette:
 
 
 ## Default palettes for different intensities
-static func get_combat_palette() -> ColorPalette:
-	var p := ColorPalette.new()
+static func get_combat_palette() -> VFXColorPalette:
+	var p := VFXColorPalette.new()
 	p.primary = Color(1.0, 0.1, 0.2)      ## Red
 	p.secondary = Color(1.0, 0.5, 0.0)    ## Orange
 	p.accent = Color(1.0, 1.0, 0.0)       ## Yellow
@@ -55,8 +55,8 @@ static func get_combat_palette() -> ColorPalette:
 	return p
 
 
-static func get_exploration_palette() -> ColorPalette:
-	var p := ColorPalette.new()
+static func get_exploration_palette() -> VFXColorPalette:
+	var p := VFXColorPalette.new()
 	p.primary = Color(0.2, 0.6, 1.0)      ## Blue
 	p.secondary = Color(0.4, 0.2, 0.8)    ## Purple
 	p.accent = Color(0.0, 1.0, 0.8)       ## Teal
@@ -64,8 +64,8 @@ static func get_exploration_palette() -> ColorPalette:
 	return p
 
 
-static func get_boss_palette() -> ColorPalette:
-	var p := ColorPalette.new()
+static func get_boss_palette() -> VFXColorPalette:
+	var p := VFXColorPalette.new()
 	p.primary = Color(0.8, 0.0, 0.4)      ## Magenta
 	p.secondary = Color(0.0, 0.0, 0.0)    ## Black
 	p.accent = Color(1.0, 0.0, 0.0)       ## Pure red

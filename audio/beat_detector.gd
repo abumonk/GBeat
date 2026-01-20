@@ -50,7 +50,7 @@ func analyze_buffer(buffer: PackedFloat32Array, sample_rate: int, current_time: 
 		_last_beat_time = current_time
 
 		# Calculate strength (0-1)
-		var strength := clamp((energy - average) / (threshold - average + 0.001), 0.0, 1.0)
+		var strength: float = clamp((energy - average) / (threshold - average + 0.001), 0.0, 1.0)
 
 		# Record beat time for BPM calculation
 		_beat_times.append(current_time)
@@ -119,15 +119,15 @@ func _calculate_variance(values: Array[float], mean: float) -> float:
 	return sum / values.size()
 
 
-func _snap_to_common_bpm(bpm: float) -> float:
+func _snap_to_common_bpm(bpm_value: float) -> float:
 	# Common BPM values in music
-	var common_bpms := [60.0, 70.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0, 110.0, 115.0, 120.0, 125.0, 128.0, 130.0, 135.0, 140.0, 145.0, 150.0, 160.0, 170.0, 175.0, 180.0]
+	var common_bpms: Array[float] = [60.0, 70.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0, 110.0, 115.0, 120.0, 125.0, 128.0, 130.0, 135.0, 140.0, 145.0, 150.0, 160.0, 170.0, 175.0, 180.0]
 
-	var closest := common_bpms[0]
-	var min_diff := abs(bpm - closest)
+	var closest: float = common_bpms[0]
+	var min_diff: float = abs(bpm_value - closest)
 
-	for common in common_bpms:
-		var diff := abs(bpm - common)
+	for common: float in common_bpms:
+		var diff: float = abs(bpm_value - common)
 		if diff < min_diff:
 			min_diff = diff
 			closest = common
@@ -135,7 +135,7 @@ func _snap_to_common_bpm(bpm: float) -> float:
 	# Only snap if within 5 BPM
 	if min_diff < 5.0:
 		return closest
-	return round(bpm)
+	return round(bpm_value)
 
 
 func reset() -> void:

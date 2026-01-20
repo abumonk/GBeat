@@ -1,5 +1,5 @@
 ## SaveManager - Handles saving and loading game data
-class_name SaveManager
+## Note: No class_name because this is an autoload singleton
 extends Node
 
 

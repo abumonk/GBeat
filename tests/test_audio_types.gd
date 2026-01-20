@@ -113,3 +113,36 @@ func test_beat_quantize_threshold() -> bool:
 		return false
 
 	return true
+
+
+func test_music_state_enum() -> bool:
+	var states := [
+		AudioTypes.MusicState.EXPLORATION,
+		AudioTypes.MusicState.COMBAT,
+		AudioTypes.MusicState.COMBAT_INTENSE,
+		AudioTypes.MusicState.BOSS,
+		AudioTypes.MusicState.VICTORY,
+		AudioTypes.MusicState.DEFEAT,
+	]
+
+	if not assert_equal(states.size(), 6, "Should have 6 music states"):
+		return false
+
+	return true
+
+
+func test_frequency_band_enum() -> bool:
+	var bands := [
+		AudioTypes.FrequencyBand.SUB_BASS,
+		AudioTypes.FrequencyBand.BASS,
+		AudioTypes.FrequencyBand.LOW_MID,
+		AudioTypes.FrequencyBand.MID,
+		AudioTypes.FrequencyBand.HIGH_MID,
+		AudioTypes.FrequencyBand.PRESENCE,
+		AudioTypes.FrequencyBand.BRILLIANCE,
+	]
+
+	if not assert_equal(bands.size(), 7, "Should have 7 frequency bands"):
+		return false
+
+	return true

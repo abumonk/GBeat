@@ -69,7 +69,7 @@ func test_pulse_config() -> bool:
 
 
 func test_color_palette() -> bool:
-	var palette := VFXTypes.ColorPalette.new()
+	var palette := VFXTypes.VFXColorPalette.new()
 
 	# Check default colors exist and are valid
 	if not assert_not_null(palette.primary):

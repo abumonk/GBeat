@@ -151,6 +151,48 @@ func has_layer(quant_type: Quant.Type) -> bool:
 	return _layers.has(quant_type)
 
 
+## Get quants filtered by type
+func get_quants_by_type(quant_type: Quant.Type) -> Array:
+	if not _initialized:
+		initialize()
+
+	if _layers.has(quant_type):
+		return _layers[quant_type]
+	return []
+
+
+## Timing calculations
+func get_beat_duration() -> float:
+	return 60.0 / bpm
+
+
+func get_bar_duration() -> float:
+	return get_beat_duration() * 4.0
+
+
+func get_quant_duration() -> float:
+	return get_beat_duration() / 8.0
+
+
+## Serialize to JSON string
+func to_json() -> String:
+	var data := {
+		"name": pattern_name,
+		"sound": sound.resource_path if sound else "",
+		"bpm": bpm,
+		"quants": []
+	}
+
+	for quant in quants:
+		data.quants.append({
+			"type": Quant.type_to_string(quant.type),
+			"position": quant.position,
+			"value": quant.value
+		})
+
+	return JSON.stringify(data, "  ")
+
+
 ## JSON Serialization
 
 func save_to_json(path: String) -> void:

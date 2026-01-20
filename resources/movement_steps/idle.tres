@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MovementStepDefinition" load_steps=2 format=3 uid="uid://bk3l5midle"]
+
+[ext_resource type="Script" path="res://character/movement/movement_step_definition.gd" id="1_step"]
+
+[resource]
+script = ExtResource("1_step")
+package = "idle"
+step_name = "idle"
+link = "idle"
+animation_name = "idle"
+step_start_frame = 0
+step_end_frame = 60
+step_start_foot_contact = 3
+step_end_foot_contact = 3
+movement_delta = Vector3(0, 0, 0)
+rotation_delta = Vector3(0, 0, 0)
+max_facing_delta_degrees = 180.0
+min_desired_speed = 0.0
+max_desired_speed = 0.1
+base_duration_seconds = 1.0
+base_duration_frames = 60

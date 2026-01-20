@@ -30,10 +30,10 @@ func test_movement_state_update() -> bool:
 	return true
 
 
-func test_movement_input_creation() -> bool:
-	var input := MovementTypes.MovementInput.new()
+func test_input_snapshot_creation() -> bool:
+	var input := MovementTypes.InputSnapshot.new()
 
-	if not assert_equal(input.direction, Vector2.ZERO, "Initial direction should be zero"):
+	if not assert_equal(input.raw_input, Vector2.ZERO, "Initial raw_input should be zero"):
 		return false
 	if not assert_equal(input.magnitude, 0.0, "Initial magnitude should be zero"):
 		return false
@@ -41,13 +41,13 @@ func test_movement_input_creation() -> bool:
 	return true
 
 
-func test_movement_input_normalization() -> bool:
-	var input := MovementTypes.MovementInput.new()
+func test_input_snapshot_quantized() -> bool:
+	var input := MovementTypes.InputSnapshot.new()
 
-	input.direction = Vector2(1, 1).normalized()
+	input.quantized_input = Vector2(1, 1).normalized()
 	input.magnitude = 1.0
 
-	if not assert_approximately(input.direction.length(), 1.0, 0.001, "Normalized direction should have length 1"):
+	if not assert_approximately(input.quantized_input.length(), 1.0, 0.001, "Normalized input should have length 1"):
 		return false
 
 	return true

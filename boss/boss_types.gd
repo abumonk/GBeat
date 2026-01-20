@@ -66,8 +66,8 @@ class BossStats:
 		return current_health / max_health if max_health > 0 else 0.0
 
 	func take_damage(amount: float) -> float:
-		var actual := max(0, amount - defense)
-		current_health = max(0, current_health - actual)
+		var actual: float = max(0.0, amount - defense)
+		current_health = max(0.0, current_health - actual)
 		return actual
 
 	func add_stagger(amount: float) -> bool:
