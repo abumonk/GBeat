@@ -13,6 +13,8 @@ The core loop: Players input directions/actions which are latched at beat bounda
 
 ## Documentation Index
 
+### Core Systems (Implemented)
+
 | Document | Description |
 |----------|-------------|
 | [01_Architecture.md](01_Architecture.md) | Core architecture, design patterns, and data flow |
@@ -24,6 +26,23 @@ The core loop: Players input directions/actions which are latched at beat bounda
 | [07_Environment.md](07_Environment.md) | Beat-reactive environment (lighting floor, VFX) |
 | [08_SaveSystem_Abilities.md](08_SaveSystem_Abilities.md) | Save/load system and ability management |
 | [09_Godot_Implementation.md](09_Godot_Implementation.md) | Godot-specific implementation guide and mapping |
+
+### Feature Designs (Planned/Partial)
+
+| Document | Description |
+|----------|-------------|
+| [10_Editors.md](10_Editors.md) | In-game editors (Pattern, Item, Animation, Color Palette) |
+| [11_Gameplay_Expansion.md](11_Gameplay_Expansion.md) | Combo system, style meter, game modes, accessibility |
+| [12_Customization.md](12_Customization.md) | Character customization (body, clothing, materials) |
+| [13_Level_Design.md](13_Level_Design.md) | Level design, themes, hazards, level editor |
+| [14_Technical_Roadmap.md](14_Technical_Roadmap.md) | Platform support, networking, CI/CD, localization |
+
+### Additional Resources
+
+| Document | Description |
+|----------|-------------|
+| [TESTING.md](TESTING.md) | Testing framework and conventions |
+| [plans/](plans/) | Detailed implementation roadmaps and timelines |
 
 ## Key Concepts
 
